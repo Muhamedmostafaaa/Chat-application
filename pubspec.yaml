@@ -35,6 +35,25 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  provider: ^6.0.3
+  flutter_native_splash: ^2.2.2
+  firebase_core: ^1.17.1
+  firebase_auth: ^3.3.19
+  cloud_firestore: ^3.1.17
+flutter_native_splash:
+
+    color: "#ffffff"
+    image: assets/images/splash.png
+
+
+    android_gravity: fill
+    ios_content_mode: scaleAspectfill
+    android: true
+    android12: true
+    ios: true
+    web: false
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -58,7 +77,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - assets/images/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
