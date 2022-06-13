@@ -1,7 +1,10 @@
 import 'package:chat_app/UI/homescreen/homescreen.dart';
+import 'package:chat_app/UI/provider/appprovider.dart';
+import 'package:chat_app/database_helper/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
 import '../../model/user.dart';
 class Registerscreen extends StatefulWidget {
@@ -20,9 +23,10 @@ class _RegisterscreenState extends State<Registerscreen> {
   String email = '';
 
   String password = '';
-
+late app_provider provider;
   @override
   Widget build(BuildContext context) {
+    provider=Provider.of<app_provider>(context);
     return Stack(
       children: [
         Container(
@@ -123,8 +127,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
                                          cerateaccount();
-                                        Navigator.pushReplacementNamed(
-                                            context, homescreen.ROUTE_NAME);
+
                                       }
                                     },
                                     child: Row(
@@ -153,8 +156,10 @@ class _RegisterscreenState extends State<Registerscreen> {
       ],
     );
   }
+
   bool isloading=false;
   final db = FirebaseFirestore.instance;
+
 void cerateaccount()async{
   try {
     UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -162,14 +167,13 @@ void cerateaccount()async{
         password:password
 
     );
-    final userref = FirebaseFirestore.instance.collection(userss.COLLECTION_NAME).withConverter<userss>(
-      fromFirestore: (snapshot, _) => userss.fromJson(snapshot.data()!),
-      toFirestore: (userss, _) => userss.toJson(),
-    );
+
+    final userref =get_user_ref_with_converter();
     final user=userss(email: email, id: userCredential.user!.uid, username: name);
-     userref.add(user ).then((value) => {
-       print(value.toString())
-     });
+    userref.doc(user.id).set(user).then((value) {
+     provider.updateuser(user);
+      Navigator.pushReplacementNamed(context, homescreen.ROUTE_NAME);
+    });
 
     showerror('user register sucssefully');
   } on FirebaseAuthException catch (e) {

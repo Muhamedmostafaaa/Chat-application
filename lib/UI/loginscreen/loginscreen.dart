@@ -1,7 +1,10 @@
 import 'package:chat_app/UI/homescreen/homescreen.dart';
+import 'package:chat_app/UI/provider/appprovider.dart';
 import 'package:chat_app/UI/registerscreen/registerscreen.dart';
+import 'package:chat_app/database_helper/database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 class loginscreen extends StatefulWidget {
   static final ROUTE_NAME = 'LOGINSCREEN';
@@ -16,9 +19,11 @@ class _loginscreenState extends State<loginscreen> {
   String email = '';
 
   String passowrd = '';
+  late app_provider provider;
 
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of<app_provider>(context);
     return Stack(
       children: [
         Container(
@@ -112,8 +117,6 @@ class _loginscreenState extends State<loginscreen> {
                                     onPressed: () {
                                       if (_formKey.currentState!.validate()) {
                                         login();
-                                        Navigator.pushReplacementNamed(
-                                            context, homescreen.ROUTE_NAME);
                                       }
                                     },
                                     child: Row(
@@ -165,6 +168,13 @@ class _loginscreenState extends State<loginscreen> {
         email: email,
         password: passowrd,
       );
+      get_user_ref_with_converter()
+          .doc(userCredential.user!.uid)
+          .get()
+          .then((retriveduser) {
+        provider.updateuser(retriveduser.data()!);
+      });
+      Navigator.pushReplacementNamed(context, homescreen.ROUTE_NAME);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Showerror('no user found for this email');

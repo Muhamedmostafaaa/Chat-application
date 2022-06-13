@@ -1,6 +1,7 @@
 
 import 'package:chat_app/UI/homescreen/homescreen.dart';
 import 'package:chat_app/UI/loginscreen/loginscreen.dart';
+import 'package:chat_app/UI/provider/appprovider.dart';
 import 'package:chat_app/UI/registerscreen/registerscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,14 +18,20 @@ void main()async{
 class myapp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-          return MaterialApp(
+          return ChangeNotifierProvider(
+            create: (context)=> app_provider(),
+            builder: (context, widget ){
+              final provider = Provider.of<app_provider>(context);
+            return   MaterialApp(
 
-            routes: {
-              loginscreen.ROUTE_NAME:(context)=>loginscreen(),
-              Registerscreen.ROUTE_NAME:(context)=>Registerscreen(),
-              homescreen.ROUTE_NAME:(context)=>homescreen()
+                routes: {
+                  loginscreen.ROUTE_NAME:(context)=>loginscreen(),
+                  Registerscreen.ROUTE_NAME:(context)=>Registerscreen(),
+                  homescreen.ROUTE_NAME:(context)=>homescreen()
+                },
+                initialRoute: loginscreen.ROUTE_NAME,
+              );
             },
-            initialRoute: Registerscreen.ROUTE_NAME,
           );
 
 
