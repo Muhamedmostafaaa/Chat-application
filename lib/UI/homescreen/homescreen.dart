@@ -1,3 +1,4 @@
+import 'package:chat_app/UI/add%20room/addroom.dart';
 import 'package:flutter/material.dart';
 
 class homescreen extends StatelessWidget {
@@ -20,7 +21,9 @@ class homescreen extends StatelessWidget {
         ),
 
         Scaffold(
-          floatingActionButton: FloatingActionButton(onPressed: (){},child: Icon(Icons.add,size: 35,),),
+          floatingActionButton: FloatingActionButton(onPressed: (){
+            Navigator.pushNamed(context, addroom.ROUTE_NAME);
+          },child: Icon(Icons.add,size: 35,),),
           backgroundColor:Colors.transparent,
 
 

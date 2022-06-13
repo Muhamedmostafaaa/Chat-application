@@ -1,4 +1,5 @@
 
+import 'package:chat_app/UI/add%20room/addroom.dart';
 import 'package:chat_app/UI/homescreen/homescreen.dart';
 import 'package:chat_app/UI/loginscreen/loginscreen.dart';
 import 'package:chat_app/UI/provider/appprovider.dart';
@@ -27,9 +28,10 @@ class myapp extends StatelessWidget{
                 routes: {
                   loginscreen.ROUTE_NAME:(context)=>loginscreen(),
                   Registerscreen.ROUTE_NAME:(context)=>Registerscreen(),
-                  homescreen.ROUTE_NAME:(context)=>homescreen()
+                  homescreen.ROUTE_NAME:(context)=>homescreen(),
+                  addroom.ROUTE_NAME:(context)=>addroom()
                 },
-                initialRoute: loginscreen.ROUTE_NAME,
+                initialRoute: addroom.ROUTE_NAME,
               );
             },
           );
