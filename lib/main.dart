@@ -31,7 +31,7 @@ class myapp extends StatelessWidget{
                   homescreen.ROUTE_NAME:(context)=>homescreen(),
                   addroom.ROUTE_NAME:(context)=>addroom()
                 },
-                initialRoute: addroom.ROUTE_NAME,
+                initialRoute:provider.islogin()? homescreen.ROUTE_NAME:loginscreen.ROUTE_NAME,
               );
             },
           );

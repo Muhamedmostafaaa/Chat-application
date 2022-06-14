@@ -10,9 +10,6 @@ class userss{
     username: json['username']! as String,
     email: json['email']! as String,
   );
-
-
-
   Map<String, Object?> toJson() {
     return {
       'id': id,

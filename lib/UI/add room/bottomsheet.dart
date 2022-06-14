@@ -35,6 +35,7 @@ class _bottomsheetState extends State<bottomsheet> {
             setState((){
               selectedcategory=text;
               widget.thecategroyselected(text);
+              Navigator.pop(context);
             });
           },
         ),Spacer(),
