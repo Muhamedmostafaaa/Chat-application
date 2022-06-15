@@ -1,6 +1,7 @@
 
 import 'package:chat_app/UI/add%20room/addroom.dart';
 import 'package:chat_app/UI/homescreen/homescreen.dart';
+import 'package:chat_app/UI/homescreen/roomdetails.dart';
 import 'package:chat_app/UI/loginscreen/loginscreen.dart';
 import 'package:chat_app/UI/provider/appprovider.dart';
 import 'package:chat_app/UI/registerscreen/registerscreen.dart';
@@ -29,7 +30,8 @@ class myapp extends StatelessWidget{
                   loginscreen.ROUTE_NAME:(context)=>loginscreen(),
                   Registerscreen.ROUTE_NAME:(context)=>Registerscreen(),
                   homescreen.ROUTE_NAME:(context)=>homescreen(),
-                  addroom.ROUTE_NAME:(context)=>addroom()
+                  addroom.ROUTE_NAME:(context)=>addroom(),
+                  Roomdetails.ROUTE_NAME:(context)=>Roomdetails()
                 },
                 initialRoute:provider.islogin()? homescreen.ROUTE_NAME:loginscreen.ROUTE_NAME,
               );

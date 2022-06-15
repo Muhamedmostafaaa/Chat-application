@@ -1,3 +1,4 @@
+import 'package:chat_app/UI/homescreen/roomdetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -8,17 +9,21 @@ class Roomwidget extends StatelessWidget{
   Roomwidget(this.room);
   @override
   Widget build(BuildContext context) {
-   return Container(padding: EdgeInsets.all(10),
-     decoration:BoxDecoration(color: Colors.white,
-     borderRadius: BorderRadius.circular(15),boxShadow: [BoxShadow(
-           offset: Offset(4,4),color: Colors.black26,blurRadius: 4
-         )]
-     ),
-     child: Column(
-       children: [
-       Image(image: AssetImage('assets/images/${room.categroy}.png'),fit: BoxFit.fill,height: 120,),
-         Text(room.roomname,style:TextStyle(fontSize: 22,fontWeight:FontWeight.w600),),
-       ],
+   return InkWell(onTap: (){
+     Navigator.pushNamed(context,Roomdetails.ROUTE_NAME,arguments: room);
+   },
+     child: Container(padding: EdgeInsets.all(10),
+       decoration:BoxDecoration(color: Colors.white,
+       borderRadius: BorderRadius.circular(15),boxShadow: [BoxShadow(
+             offset: Offset(4,4),color: Colors.black26,blurRadius: 4
+           )]
+       ),
+       child: Column(
+         children: [
+         Image(image: AssetImage('assets/images/${room.categroy}.png'),fit: BoxFit.fill,height: 120,),
+           Text(room.roomname,style:TextStyle(fontSize: 22,fontWeight:FontWeight.w600),),
+         ],
+       ),
      ),
    );
   }
