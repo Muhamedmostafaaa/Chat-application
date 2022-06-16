@@ -91,7 +91,7 @@ class _RoomdetailsState extends State<Roomdetails> {
                                 0Xff7F7F7F), fontSize: 18),)),
                         Spacer(),
                         Expanded(flex: 7,
-                          child: Container(color:Colors.red,height: double.infinity,width:double.infinity,
+                          child: Container(height: double.infinity,width:double.infinity,
                             child: StreamBuilder<QuerySnapshot<Message>>(
                               stream: messagestream,
                               builder: (BuildContext context,
@@ -102,7 +102,7 @@ class _RoomdetailsState extends State<Roomdetails> {
                                   return ListView.builder(
                                     itemBuilder: (context, index) {
                                       return messagedesign(snapshot.data!.docs[index].data());
-                                    }, itemCount: snapshot.data?.size,reverse: true,);
+                                    }, itemCount: snapshot.data?.size);
                                 } else
                                   return Center(
                                     child: CircularProgressIndicator(),);
@@ -125,7 +125,7 @@ class _RoomdetailsState extends State<Roomdetails> {
                                     hintText: 'Type you message',
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(20)))),
+                                            topRight: Radius.circular(15)))),
                               ),
                             ),
                             SizedBox(width: 20,),
